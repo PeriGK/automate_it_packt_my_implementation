@@ -1,6 +1,6 @@
 import bs4
 from os import getcwd
-myfile = open('automate_it_packt_my_implementation/python.html')
+myfile = open('python.html')
 soup = bs4.BeautifulSoup(myfile, "lxml")
 #Making the soup
 print ("BeautifulSoup Object:", type(soup))
