@@ -1,5 +1,6 @@
 import pandas as pd
 from matplotlib import pyplot as plt
+import seaborn as sns
 
 pd.set_option('display.line_width', 5000)
 pd.set_option('display.max_columns', 60)
@@ -26,5 +27,11 @@ in_city = fundings['city'].isin(['Palo Alto', 'San Fransisco', 'San Mateo',
                                 'Los Angeles', 'Redwood City'])
 
 web_funding = fundings[web_funding & in_CA & in_city] 
-web_counts = web_funding['city'].value_counts()
+total_counts = web_funding['city'].value_counts()
 print('Funding rounds for web companies in CA:\n', web_counts)
+
+sns.set_style("darkgrid") 
+sns_plot = (total_counts*100/total_counts.astype(float)).plot(kind='barh') 
+
+plt.xlabel("(Funding Rounds in Web Category) / (Funding Rounds in All Categories) * (100)")
+plt.savefig('webFundedByCity.pdf')
