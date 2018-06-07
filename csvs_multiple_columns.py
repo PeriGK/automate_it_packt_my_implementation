@@ -15,3 +15,7 @@ print('Selected company category and date of funding \n', fundings[
 
 counts = fundings['category'].value_counts()
 print('Most common categories of companies that raised funds: ', counts)
+
+counts.plot(kind='barh')
+plt.xlabel('Count categories')
+plt.savefig('categoriesfunded.pdf')
