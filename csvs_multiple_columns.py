@@ -19,3 +19,12 @@ print('Most common categories of companies that raised funds: ', counts)
 counts.plot(kind='barh')
 plt.xlabel('Count categories')
 plt.savefig('categoriesfunded.pdf')
+
+web_funding = fundings['category'] == 'web'
+in_CA = fundings['state'] == 'CA'
+in_city = fundings['city'].isin(['Palo Alto', 'San Fransisco', 'San Mateo', 
+                                'Los Angeles', 'Redwood City'])
+
+web_funding = fundings[web_funding & in_CA & in_city] 
+web_counts = web_funding['city'].value_counts()
+print('Funding rounds for web companies in CA:\n', web_counts)
